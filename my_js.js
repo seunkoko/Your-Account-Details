@@ -1,11 +1,11 @@
 
-
+var account_name = document.getElementById('text_box').value;
 
 $('#perform_submit').click(function (){
     console.log("clicked");
 
     //Code to get the value from the text box with id=text_box
-    var account_name = document.getElementById('text_box').value
+    account_name = document.getElementById('text_box').value
 
     //variables declared to hold the data set gotten from https://api.github.com/users/account_name
     var avatar_url_use;
@@ -19,9 +19,10 @@ $('#perform_submit').click(function (){
     //var xhr declares your xmlhttprequest for https://api.github.com/users/account_name
     //function done is for succesful execution
     //function fail is to handle failed execution
-        //function always is for waiting till the request is complete
+    //function always is for waiting till the request is complete
+    console.log(account_name);
     var xhr = $.get( "https://api.github.com/users/" + account_name, function() {
-      //alert( "getting from https://api.github.com/users/seunkoko );
+      //alert( "getting from https://api.github.com/users/account_name );
     })
       .done(function(data) {
         //console.log(data)
@@ -33,7 +34,7 @@ $('#perform_submit').click(function (){
             console.log(data.followers);
             console.log(data.following);
             console.log(data.message);
-
+    
             //assigning the variables to the desired outputs
             avatar_url_use = data.avatar_url;
             public_repos_use = data.public_repos;
@@ -99,14 +100,14 @@ $('#perform_submit').click(function (){
             //alert( "error" );
                 console.log("not found");
                 $('#public_gists').html("<p class='lead text-center' style='color:#800000; margin-top:10px; margin-bottom:10px'>User does not exist<p>");
-                $('#avatar_url').html();
-                $('#public_repos').html();
-                $('#followers').html();
-                $('#followers').html();
-                $('#feed_back_followers').html();
-                $('#feed_back_following').html();
-                $('#feed_back_repos').html();
-                $('#feed_back_gists').html();
+                $('#avatar_url').empty("");
+                $('#public_repos').html("");
+                $('#followers').html("");
+                $('#following').html("");
+                $('#feed_back_followers').html("");
+                $('#feed_back_following').html("");
+                $('#feed_back_repos').html("");
+                $('#feed_back_gists').html("");
           })
             .always(function() {
               //alert( "finished" );
